@@ -80,19 +80,21 @@ bool Car::bIstLeer() const
 
 double Car::dGeschwindigkeit() const
 {
-	if(p_pVerhalten)
-	{
-		Weg& weg = p_pVerhalten->getWeg();
+    if (!p_pVerhalten)
+    {
+        return getMaxGeschwindigkeit();
+    }
 
-		double limit = static_cast<double>(weg.getTempolimit());
+    Weg& weg = p_pVerhalten->getWeg();
+    double limit = static_cast<double>(weg.getTempolimit());
 
-		if (this->getMaxGeschwindigkeit() > limit)
-		{
-			std::cout << "Strafe wegen zu schnellem Fahren" << std::endl;
-			return limit;
-		}
-	}
-	else return this->getMaxGeschwindigkeit(); // another error
+    if (getMaxGeschwindigkeit() > limit)
+    {
+        std::cout << "Strafe wegen zu schnellem Fahren" << std::endl;
+        return limit;
+    }
+
+    return getMaxGeschwindigkeit(); // ← THIS WAS MISSING
 }
 
 void Car::vAusgabe(std::ostream& ausgabe) const
