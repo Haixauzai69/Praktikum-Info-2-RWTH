@@ -185,17 +185,21 @@ void Simulation::vSimulieren(double dDauer, double dZeitschritt)
 {
 	for (dGlobaleZeit = 0; dGlobaleZeit <= dDauer; dGlobaleZeit += dZeitschritt)
 	{
+		vSetzeZeit(dGlobaleZeit);
 		for (auto it = pMapKreuzungen.begin(); it != pMapKreuzungen.end(); it++)
 		{
-			vSetzeZeit(dGlobaleZeit);
 			it->second->vSimulieren(dZeitschritt);
-		    	for (const auto& weg : it->second->getWege())
-		    	{
-		    		for (const auto& fzg : weg->getFahrzeuge())
-		    		{
-		    			fzg->vZeichen(*weg); // error starts here
-		    		}
-		    	}
+		}
+
+		for (auto it = pMapKreuzungen.begin(); it != pMapKreuzungen.end(); it++)
+		{
+			for (const auto& weg : it->second->getWege())
+			{
+				for (const auto& fzg : weg->getFahrzeuge())
+				{
+					fzg->vZeichen(*weg);
+				}
+			}
 		}
 	}
 }

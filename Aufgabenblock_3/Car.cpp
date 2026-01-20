@@ -80,7 +80,7 @@ bool Car::bIstLeer() const
 
 double Car::dGeschwindigkeit() const
 {
-	if(p_pVerhalten) // voila
+	if(p_pVerhalten)
 	{
 		Weg& weg = p_pVerhalten->getWeg();
 
@@ -92,7 +92,7 @@ double Car::dGeschwindigkeit() const
 			return limit;
 		}
 	}
-	else return this->getMaxGeschwindigkeit();
+	else return this->getMaxGeschwindigkeit(); // another error
 }
 
 void Car::vAusgabe(std::ostream& ausgabe) const

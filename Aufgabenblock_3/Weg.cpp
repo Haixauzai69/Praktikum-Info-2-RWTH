@@ -82,37 +82,9 @@ void Weg::vSimulieren(double dTimeStep) // heart of ueberholverbot
 		return a->getStreckenabschn() > b->getStreckenabschn();
 	});
 
-//	std::vector<std::unique_ptr<Fahrzeug>> sorted; idea: create a Maxdistance function that sorts list of vehicles in distance and returns the distance of the furthest, argument of the list of vehicles
-////
-////	for (auto i : p_pFahrzeuge)
-////	{
-////		sorted.push_back(std::move(i));
-////	}
-////
-////	std::sort(sorted.begin(), sorted.end(), [](std::unique_ptr<Fahrzeug> a, std::unique_ptr<Fahrzeug> b)
-////	{
-////		return a->getStreckenabschn() > b->getStreckenabschn();
-////	});
-//
 	p_pVorherFzg = nullptr;
 	p_dVirtuelleSchranke = p_dLaenge;
-//
-//	for (auto& i : p_pFahrzeuge)
-//	{
-//		try
-//		{
-//			i->vSimulieren(dTimeStep);
-//			double Schranke = i->getStreckenabschn();
-//			setVirtuelleSchranke(Schranke);
-//			p_pVorherFzg = i.get();
-//		}
-//
-//		catch(Fahrausnahme& error)
-//		{
-//			error.vBearbeiten();
-//		}
-//	}
-//
+
 	for (auto* i : sorted)
 	{
 		try

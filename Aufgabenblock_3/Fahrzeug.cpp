@@ -47,9 +47,9 @@ void Fahrzeug::vSimulieren(double dTimeStep)
 	std::cout << " Fahrzeug::vSimulieren '" << sGetName()
 	          << "' dS=" << dS << " (before update abs=" << p_dAbschnittStrecke << ")\n";
 
-	vAddStrecke(dS);
-//	p_dAbschnittStrecke += dS;
-	p_dGesamtStrecke += dS;
+//	vAddStrecke(dS);
+	p_dAbschnittStrecke += dS;
+//	p_dGesamtStrecke += dS;
 }
 
 double Fahrzeug::dGeschwindigkeit() const

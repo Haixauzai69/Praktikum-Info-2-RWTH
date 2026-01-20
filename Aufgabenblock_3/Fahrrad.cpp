@@ -28,22 +28,23 @@ Fahrrad::Fahrrad(const std::string& name, double maxSpeed) : Fahrzeug(name, maxS
 
 double Fahrrad::dGeschwindigkeit() const // add verhalten to bikes
 {
-//	Weg& weg = p_pVerhalten->getWeg();
-
-	int streckenteil = p_dGesamtStrecke / 20.0;
-
-	double speed = p_dMaxGeschwindigkeit;
-
-	for (int i = 1; i < streckenteil; i++)
+	if (p_pVerhalten)
 	{
-		speed *= 0.9;
-	}
+		int streckenteil = p_dGesamtStrecke / 20.0;
+		double speed = p_dMaxGeschwindigkeit;
 
-	if (speed < 12.0)
-	{
-		speed = 12.0;
+		for (int i = 1; i < streckenteil; i++)
+		{
+			speed *= 0.9;
+		}
+
+		if (speed < 12.0)
+		{
+			speed = 12.0;
+		}
+		return speed;
 	}
-	return speed;
+	else return this->getMaxGeschwindigkeit();
 }
 
 bool Fahrrad::bIstLeer() const
@@ -76,7 +77,7 @@ void Fahrrad::vAusgabe(std::ostream& ausgabe) const
 void Fahrrad::vZeichen(const Weg& weg)
 {
 	double relPos = p_dAbschnittStrecke / weg.dGetLaenge();
-	bZeichneFahrrad(this->sGetName(), weg.sGetName() + "_hin", relPos, dGeschwindigkeit());
+	bZeichneFahrrad(this->sGetName(), weg.sGetName(), relPos, dGeschwindigkeit());
 }
 
 void Fahrrad::vEinlesen(std::istream& eingabe)
