@@ -20,7 +20,7 @@
 #include "Fahrzeug.h"
 #include "Tempolimit.h"
 
-void Simulation::vEinlesen(std::istream &i)
+void Simulation::vEinlesen(std::istream &i, bool bMitGrafik)
 {
 	std::string key;
 	std::string key2;
@@ -36,7 +36,26 @@ void Simulation::vEinlesen(std::istream &i)
 			{
 				auto kreuzung = std::make_shared<Kreuzung>();
 				i >> *kreuzung;
+
+				auto it = pMapKreuzungen.find(kreuzung->sGetName());
+				if (it != pMapKreuzungen.end())
+				{
+					throw std::runtime_error("Kreuzung bereits vorhanden");
+				}
+
 				pMapKreuzungen[kreuzung->sGetName()] = std::move(kreuzung);
+
+				if(bMitGrafik)
+				{
+					double dXCoord;
+					double dYCoord;
+					i >> key;
+					dXCoord = stod(key);
+					i >> key;
+					dYCoord = stod(key);
+
+					bZeichneKreuzung(dXCoord, dYCoord);
+				}
 			}
 			else if (key == "STRASSE")
 			{
@@ -76,6 +95,23 @@ void Simulation::vEinlesen(std::istream &i)
 				else
 				{
 					Kreuzung::vVerbinde(sNameW1, sNameW2, iStrassenlaenge, eTempolimit, bUeberholverbot, it1->second, it2->second);
+				}
+
+				if(bMitGrafik)
+				{
+					int iAnzahlCoords;
+					int iTempCoord;
+					i >> key;
+					iAnzahlCoords = stoi(key);
+					int iCoords[2*iAnzahlCoords];
+
+					for (int j = 0; j < 2*iAnzahlCoords; j++)
+					{
+						i >> key;
+						iTempCoord = stoi(key);
+						iCoords[j] = iTempCoord;
+					}
+					bZeichneStrasse(sNameW1, sNameW2, iStrassenlaenge, iAnzahlCoords, iCoords);
 				}
 			}
 
