@@ -94,7 +94,7 @@ double Car::dGeschwindigkeit() const
         return limit;
     }
 
-    return getMaxGeschwindigkeit(); // ← THIS WAS MISSING
+    return getMaxGeschwindigkeit();
 }
 
 void Car::vAusgabe(std::ostream& ausgabe) const
