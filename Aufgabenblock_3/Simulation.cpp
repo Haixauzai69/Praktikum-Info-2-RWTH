@@ -120,8 +120,6 @@ void Simulation::vEinlesen(std::istream &i)
 			{
 			    throw std::runtime_error("Unbekanntes Schlüsselwort: " + key);
 			}
-
-			i >> key;
 		}
 
 		catch (const std::exception& e)
