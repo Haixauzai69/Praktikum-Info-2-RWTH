@@ -193,7 +193,7 @@ void Simulation::vSimulieren(double dDauer, double dZeitschritt)
 		    	{
 		    		for (const auto& fzg : weg->getFahrzeuge())
 		    		{
-		    			fzg->vZeichen(*weg);
+		    			fzg->vZeichen(*weg); // error starts here
 		    		}
 		    	}
 		}
