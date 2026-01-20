@@ -12,6 +12,8 @@
 #include <iterator>
 #include <memory>
 #include "Simulation.h"
+#include <exception>
+#include <stdexcept>
 #include "Kreuzung.h"
 #include "Simulationsobjekt.h"
 #include "SimuClient.h"
@@ -43,18 +45,19 @@ void Simulation::vEinlesen(std::istream &i, bool bMitGrafik)
 					throw std::runtime_error("Kreuzung bereits vorhanden");
 				}
 
-				pMapKreuzungen[kreuzung->sGetName()] = std::move(kreuzung);
+//				pMapKreuzungen[kreuzung->sGetName()] = std::move(kreuzung);
+				pMapKreuzungen.insert(std::pair<std::string, std::shared_ptr<Kreuzung>>(kreuzung->sGetName(), kreuzung));
 
 				if(bMitGrafik)
 				{
-					double dXCoord;
-					double dYCoord;
+					int iXCoord;
+					int iYCoord;
 					i >> key;
-					dXCoord = stod(key);
+					iXCoord = stoi(key);
 					i >> key;
-					dYCoord = stod(key);
+					iYCoord = stoi(key);
 
-					bZeichneKreuzung(dXCoord, dYCoord);
+					bZeichneKreuzung(iXCoord, iYCoord);
 				}
 			}
 			else if (key == "STRASSE")
@@ -75,15 +78,27 @@ void Simulation::vEinlesen(std::istream &i, bool bMitGrafik)
 
 				Tempolimit eTempolimit;
 				i >> key;
-				if (stod(key) == 1) eTempolimit = Tempolimit::Innerorts;
+				if (stod(key) == 1)
+				{
+					eTempolimit = Tempolimit::Innerorts;
+				}
 
-				if (stod(key) == 2) eTempolimit = Tempolimit::Ausserorts;
+				else if (stod(key) == 2)
+				{
+					eTempolimit = Tempolimit::Ausserorts;
+				}
 
-				if (stod(key) == 3) eTempolimit = Tempolimit::Autobahn;
+				else if (stod(key) == 3)
+				{
+					eTempolimit = Tempolimit::Autobahn;
+				}
 
 				bool bUeberholverbot = 0;
 				i >> key;
-				if (stod(key) == 1) bUeberholverbot = 1;
+				if (stod(key) == 1)
+				{
+					bUeberholverbot = 1;
+				}
 
 				auto it1 = pMapKreuzungen.find(sNameK1);
 				auto it2 = pMapKreuzungen.find(sNameK2);
@@ -174,6 +189,13 @@ void Simulation::vSimulieren(double dDauer, double dZeitschritt)
 		{
 			vSetzeZeit(dGlobaleZeit);
 			it->second->vSimulieren(dZeitschritt);
+		    	for (const auto& weg : it->second->getWege())
+		    	{
+		    		for (const auto& fzg : weg->getFahrzeuge())
+		    		{
+		    			fzg->vZeichen(*weg);
+		    		}
+		    	}
 		}
 	}
 }
