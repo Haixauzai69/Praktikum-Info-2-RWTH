@@ -24,7 +24,8 @@ class Simulation
 	public:
 	Simulation() = default;
 	virtual ~Simulation() = default;
-	void vEinlesen(std::istream& i, bool bMitGrafik = false);
+
+	void vEinlesen(std::istream& i);
 	void vSimulieren(double dDauer, double dZeitschritt);
 };
 
