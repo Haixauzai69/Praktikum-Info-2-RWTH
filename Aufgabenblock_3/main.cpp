@@ -510,7 +510,7 @@ void vAufgabe_9a()
 
 	sim.vEinlesen(f, true);
 
-	sim.vSimulieren(20, 0.1);
+	sim.vSimulieren(20, 0.5);
 
 	vSleep(100000);
 	vBeendeGrafik();
