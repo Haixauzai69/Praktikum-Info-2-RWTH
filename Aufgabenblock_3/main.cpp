@@ -389,12 +389,12 @@ void vAufgabe_7()
 	std::shared_ptr<Kreuzung> Kr3 = std::make_shared<Kreuzung>("Kr3");
 	std::shared_ptr<Kreuzung> Kr4 = std::make_shared<Kreuzung>("Kr4");
 
-	Kreuzung::vVerbinde("W12", "W21", 40, Tempolimit::Innerorts, true, Kr1, Kr2); //Straße 1
-	Kreuzung::vVerbinde("W23a", "W32a", 115, Tempolimit::Autobahn, false, Kr2, Kr3); //Straße 2
-	Kreuzung::vVerbinde("W23b", "W32b", 40, Tempolimit::Innerorts, true, Kr2, Kr3); //Straße 3
-	Kreuzung::vVerbinde("W24", "W42", 55, Tempolimit::Innerorts, true, Kr2, Kr4); //Straße 4
-	Kreuzung::vVerbinde("W34", "W43", 85, Tempolimit::Autobahn, false, Kr3, Kr4); //Straße 5
-	Kreuzung::vVerbinde("W44a", "W44b", 130, Tempolimit::Innerorts, false, Kr4, Kr4); //Straße 6
+	Kreuzung::vVerbinde("W12", "W21", 40, Tempolimit::Innerorts, true, Kr1, Kr2);
+	Kreuzung::vVerbinde("W23a", "W32a", 115, Tempolimit::Autobahn, false, Kr2, Kr3);
+	Kreuzung::vVerbinde("W23b", "W32b", 40, Tempolimit::Innerorts, true, Kr2, Kr3);
+	Kreuzung::vVerbinde("W24", "W42", 55, Tempolimit::Innerorts, true, Kr2, Kr4);
+	Kreuzung::vVerbinde("W34", "W43", 85, Tempolimit::Autobahn, false, Kr3, Kr4);
+	Kreuzung::vVerbinde("W44a", "W44b", 130, Tempolimit::Innerorts, false, Kr4, Kr4);
 
 	int iCoords1[] = { 680, 40, 680, 300 };
 	bZeichneStrasse("W12", "W21", 40, 2, iCoords1); //1
@@ -530,10 +530,10 @@ int main()
 //	vAufgabe_6();
 //	vTest();
 //	vAufgabe_6a();
-//	vAufgabe_7();
+	vAufgabe_7();
 //	vAufgabe_8();
 //	vAufgabe_9();
-	vAufgabe_9a();
+//	vAufgabe_9a();
 	return 0;
 }
 
