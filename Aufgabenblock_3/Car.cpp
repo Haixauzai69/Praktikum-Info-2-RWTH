@@ -59,6 +59,7 @@ void Car::vSimulieren(double dTimeStep)
 	{
 		p_dAbschnittStrecke += dS;
 		p_dGesamtStrecke += dS;
+		p_dTankinhalt -= dVerbrauch;
 	}
 	else
 	{

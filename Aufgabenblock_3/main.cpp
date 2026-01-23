@@ -281,7 +281,7 @@ void vAufgabe_6()
 
     vSleep(500);
 
-    bZeichneStrasse(junkerstrasse->sGetName() + "_hin", junkerstrasse->sGetName() + "_rueck", junkerstrasse->dGetLaenge(), 2, koordinaten);
+    bZeichneStrasse(junkerstrasse->sGetName() + "1", junkerstrasse->sGetName() + "2", junkerstrasse->dGetLaenge(), 2, koordinaten);
 
 	junkerstrasse->vAnnahme(std::move(car1)); // startzeit hinzufügen bedeutet parken
 	junkerstrasse->vAnnahme(std::move(bike1));
@@ -510,7 +510,7 @@ void vAufgabe_9a()
 
 	sim.vEinlesen(f, true);
 
-	sim.vSimulieren(20, 0.5);
+	sim.vSimulieren(20, 0.1);
 
 	vSleep(100000);
 	vBeendeGrafik();
@@ -530,10 +530,10 @@ int main()
 //	vAufgabe_6();
 //	vTest();
 //	vAufgabe_6a();
-	vAufgabe_7();
+//	vAufgabe_7();
 //	vAufgabe_8();
 //	vAufgabe_9();
-//	vAufgabe_9a();
+	vAufgabe_9a();
 	return 0;
 }
 
