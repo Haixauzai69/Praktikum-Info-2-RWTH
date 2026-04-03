@@ -133,6 +133,7 @@ std::shared_ptr<Weg> Kreuzung::pZufaelligerWeg(Weg& ankunftsWeg)
 	{
 		return nullptr;
 	}
+	return nullptr;
 }
 
 double Kreuzung::dGetTank()
